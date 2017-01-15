@@ -1,4 +1,4 @@
-Symfony hybrid app sharing state object with Twig, React and Vue
+A Symfony hybrid app sharing state object with Twig, React and Vue
 ==========
 
 A Symfony project created on January 14, 2017, 9:23 am.
