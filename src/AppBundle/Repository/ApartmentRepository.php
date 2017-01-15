@@ -25,4 +25,21 @@ class ApartmentRepository extends \Doctrine\ORM\EntityRepository
             return null;
         }
     }
+
+    public function finByCountry($country)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT a
+                 FROM AppBundle:Apartment a
+                 WHERE a.country = :selectedCountry
+                 ORDER BY a.buildyear ASC'
+            )->setParameter('selectedCountry',$country);
+
+        try {
+            return $query->getResult();
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
 }

@@ -12,6 +12,19 @@
 
 <body>
 
+<header class="container">
+    <p>
+        <a href="{{ path('homepage') }}">Home</a>
+        <a href="{{ path('homepage', {limit: 10}) }}">Get 10</a>
+        <a href="{{ path('homepage', {limit: 100}) }}">Get 100</a>
+        <a href="{{ path('homepage', {limit: 500}) }}">Get 500</a>
+        <a href="{{ path('homepage', {limit: 1000}) }}">Get 1000</a>
+        <a href="{{ path('filtered', {country: 'Finland'}) }}">All apartments in Finland</a>
+        <a href="{{ path('filtered', {country: 'Japan'}) }}">All apartments Japan</a>
+    </p>
+
+</header>
+
 {% block body %}
 {% endblock %}
 

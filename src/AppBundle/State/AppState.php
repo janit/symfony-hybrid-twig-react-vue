@@ -7,8 +7,8 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class AppState implements \JsonSerializable {
 
-    public $sortBy = 'price';
-    public $selectedCountry = 'Cuba';
+    public $sortBy = false;
+    public $selectedCountry = false;
     public $apartments = [];
 
     public function jsonSerialize() {
@@ -51,6 +51,22 @@ class AppState implements \JsonSerializable {
     public function setApartments($apartments)
     {
         $this->apartments = $apartments;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSelectedCountry()
+    {
+        return $this->selectedCountry;
+    }
+
+    /**
+     * @param bool $selectedCountry
+     */
+    public function setSelectedCountry($selectedCountry)
+    {
+        $this->selectedCountry = $selectedCountry;
     }
 
 

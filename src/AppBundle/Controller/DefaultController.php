@@ -13,7 +13,7 @@ class DefaultController extends Controller
     /**
      * @Route("/{limit}", name="homepage")
      */
-    public function indexAction(Request $request, int $limit = 3)
+    public function indexAction(Request $request, int $limit = 3 )
     {
 
         $appState = new AppState();
@@ -21,6 +21,27 @@ class DefaultController extends Controller
         $em = $this->get('doctrine.orm.default_entity_manager');
         $apartments = $em->getRepository('AppBundle:Apartment')->findByLimit($limit);
 
+        $appState->setApartments($apartments);
+
+        return $this->render('default/index.html.twig', [
+            'appstate' => $appState,
+            'appstate_serialized' => $appState->jsonSerialize()
+        ]);
+    }
+
+    /**
+     * @Route("/country/{country}", name="filtered")
+     */
+    public function filteredAction(Request $request, $country=false )
+    {
+
+        $appState = new AppState();
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        $apartments = $em->getRepository('AppBundle:Apartment')->findByCountry($country);
+
+        $appState->setSelectedCountry($country);
+        $appState->setSortBy($country);
         $appState->setApartments($apartments);
 
         return $this->render('default/index.html.twig', [
