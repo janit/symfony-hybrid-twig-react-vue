@@ -14,12 +14,12 @@
 
 <header class="container">
     <p>
-        <a href="{{ path('homepage') }}">Home</a>
-        <a href="{{ path('homepage', {limit: 10}) }}">Get 10</a>
-        <a href="{{ path('homepage', {limit: 100}) }}">Get 100</a>
-        <a href="{{ path('homepage', {limit: 300}) }}">Get 300</a>
-        <a href="{{ path('filtered', {country: 'Finland'}) }}">All apartments in Finland</a>
-        <a href="{{ path('filtered', {country: 'Japan'}) }}">All apartments Japan</a>
+        <a href="{{ path('homepage') }}" class="button">Home</a>
+        <a href="{{ path('homepage', {limit: 10}) }}" class="button">List 10</a>
+        <a href="{{ path('homepage', {limit: 100}) }}" class="button">List 100</a>
+        <a href="{{ path('homepage', {limit: 300}) }}" class="button">List 300</a>
+        <a href="{{ path('filtered', {country: 'Finland'}) }}" class="button">List apartments in Finland</a>
+        <a href="{{ path('filtered', {country: 'Japan'}) }}" class="button">List apartments in Japan</a>
     </p>
 
 </header>
