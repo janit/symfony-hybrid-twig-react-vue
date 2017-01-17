@@ -7,7 +7,7 @@ An ongoing effort to provide a working  example concept of simply
 sharing a state object between the Twig template rendering engine
 as well as JavaScript view layers Vue and React. There is also a
 simple API backend that also returns the same object and keeps
-things predictable for developers
+things predictable for developers.
 
 This will just handle the sharing of initial state on page load
 and you'll need to then take over your state management in your
