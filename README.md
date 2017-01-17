@@ -7,6 +7,10 @@ An ongoing effort to provide a working  example concept of simply
 sharing a state object between the Twig template rendering engine
 as well as JavaScript view layers Vue and React.
 
+This will just handle the sharing of initial state on page load
+and you'll need to then take over your state management in your
+front end using some kind of tools for that, e.g. MobX, Redux. 
+
 The application comes complete with an SQLite database and built
 JavaScript clients to keep overhead of installation minimal. The
 application itself is simple enough to figure out with basic
