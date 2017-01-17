@@ -7,10 +7,13 @@ An ongoing effort to provide a working  example concept of simply
 sharing a state object between the Twig template rendering engine
 as well as JavaScript view layers Vue and React.
 
-## Installation
-
 The application comes complete with an SQLite database and a built
-JavaScript clients to keep overhead of installation minimal.
+JavaScript clients to keep overhead of installation minimal. The
+application itself is simple enough to figure out with basic
+understanding of OO PHP and Symfony, so it's better just to take
+a look for yourself to see if this feels like a good idea or not.
+
+## Installation
 
 Clone app:
 
