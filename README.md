@@ -5,11 +5,15 @@ A Symfony project created on January 14, 2017, 9:23 am.
 
 An ongoing effort to provide a working  example concept of simply
 sharing a state object between the Twig template rendering engine
-as well as JavaScript view layers Vue and React.
+as well as JavaScript view layers Vue and React. There is also a
+simple API backend that also returns the same object and keeps
+things predictable for developers
 
 This will just handle the sharing of initial state on page load
 and you'll need to then take over your state management in your
 front end using some kind of tools for that, e.g. MobX, Redux.
+This introduces no overhead of server side rendering for decent
+performance, but SSR can be done.
 
 The application comes complete with an SQLite database and built
 JavaScript clients to keep overhead of installation minimal. The
