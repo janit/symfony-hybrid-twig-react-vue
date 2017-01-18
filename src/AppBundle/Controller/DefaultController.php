@@ -10,6 +10,29 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
+    
+    /**
+     * @Route("/api", name="api")
+     */
+    public function apiApartmentsAction(Request $request)
+    {
+
+        $appState = new AppState();
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        $apartments = $em->getRepository('AppBundle:Apartment')->findAll();
+
+        $appState->setApartments($apartments);
+
+        $response = new JsonResponse();
+
+        $response->setContent($appState->jsonSerialize());
+
+        return $response;
+
+    }
+
+
     /**
      * @Route("/{limit}", name="homepage")
      */
@@ -48,27 +71,6 @@ class DefaultController extends Controller
             'appstate' => $appState,
             'appstate_serialized' => $appState->jsonSerialize()
         ]);
-    }
-
-    /**
-     * @Route("/api", name="api")
-     */
-    public function apiApartmentsAction(Request $request)
-    {
-
-        $apartmentsState = new ApartmentsState();
-
-        $em = $this->get('doctrine.orm.default_entity_manager');
-        $apartments = $em->getRepository('AppBundle:Apartment')->findAll();
-
-        $apartmentsState->setApartments($apartments);
-
-        $response = new JsonResponse();
-
-        $response->setContent($apartmentsState->jsonSerialize());
-
-        return $response;
-
     }
 
 }
