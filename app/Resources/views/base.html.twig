@@ -31,6 +31,9 @@
     var initialAppState = {{ appstate_serialized|raw }};
 </script>
 
+<!-- http utility -->
+<script src="{{ asset('bundles/app/js/axios.min.js') }}"></script>
+
 <!-- typescript -->
 <script src="{{ asset('bundles/app/js/typescript/dist/app.js') }}"></script>
 <script>initTsApp();</script>
