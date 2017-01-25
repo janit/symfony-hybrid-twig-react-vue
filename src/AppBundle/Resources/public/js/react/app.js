@@ -8,17 +8,23 @@ class Apartments extends Component {
 
         this.state = {
             apartments: [],
-
         };
     }
 
     componentDidMount() {
-        axios.get('/api')
-            .then(res => {
-                var apartments = res.data.apartments;
 
-                this.setState({ apartments });
-            });
+        if(this.props.state.fetchMore){
+
+            console.log('loading more items from React app');
+
+            axios.get('/api')
+                .then(res => {
+                    var apartments = res.data.apartments;
+
+                    this.setState({ apartments });
+                });
+
+        }
     }
 
     renderRows(apartment) {

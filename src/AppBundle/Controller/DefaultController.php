@@ -12,33 +12,30 @@ class DefaultController extends Controller
 {
 
     /**
-     * @Route("/api", name="api")
+     * @Route("/", name="homepage")
      */
-    public function apiApartmentsAction(Request $request)
+    public function indexAction(Request $request )
     {
 
         $appState = new AppState();
 
         $em = $this->get('doctrine.orm.default_entity_manager');
-        $apartments = $em->getRepository('AppBundle:Apartment')->getRandom(10);
+        $apartments = $em->getRepository('AppBundle:Apartment')->findByLimit(3);
 
         $appState->setApartments($apartments);
+        $appState->setFetchMore(true);
 
-        $response = new JsonResponse();
-
-        sleep(mt_rand(0,2));
-
-        $response->setContent($appState->jsonSerialize());
-
-        return $response;
-
+        return $this->render('default/index.html.twig', [
+            'appstate' => $appState,
+            'appstate_serialized' => $appState->jsonSerialize()
+        ]);
     }
 
 
     /**
-     * @Route("/{limit}", name="homepage")
+     * @Route("/limit/{limit}", name="limited")
      */
-    public function indexAction(Request $request, int $limit = 3 )
+    public function limitedAction(Request $request, int $limit = 3 )
     {
 
         $appState = new AppState();
@@ -74,5 +71,30 @@ class DefaultController extends Controller
             'appstate_serialized' => $appState->jsonSerialize()
         ]);
     }
+
+
+    /**
+     * @Route("/api", name="api")
+     */
+    public function apiApartmentsAction(Request $request)
+    {
+
+        $appState = new AppState();
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        $apartments = $em->getRepository('AppBundle:Apartment')->getRandom(10);
+
+        $appState->setApartments($apartments);
+
+        $response = new JsonResponse();
+
+        sleep(mt_rand(0,2));
+
+        $response->setContent($appState->jsonSerialize());
+
+        return $response;
+
+    }
+
 
 }

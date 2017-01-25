@@ -3,6 +3,7 @@ interface AppState {
     sortBy: string;
     selectedCountry: string;
     apartments: ApartmentEntity[];
+    fetchMore: boolean;
 
 }
 
@@ -16,7 +17,7 @@ interface ApartmentEntity {
     buildyear: number;
     size: number;
 
-
 }
 
 declare var appState: AppState;
+declare var initialAppState: AppState;

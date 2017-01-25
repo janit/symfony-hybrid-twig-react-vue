@@ -25,19 +25,25 @@ var ApartmentListing = Vue.extend({
 
     created: function () {
 
-        var that = this;
+        if(this.fetchMore) {
 
-        axios.get('/api')
-            .then(function (response) {
+            console.log('loading more items from Vue app');
 
-                for(var i in response.data.apartments){
-                    that.apartments.push(response.data.apartments[i]);
-                }
+            var that = this;
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+            axios.get('/api')
+                .then(function (response) {
+
+                    for (var i in response.data.apartments) {
+                        that.apartments.push(response.data.apartments[i]);
+                    }
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+
+        }
 
 
     }

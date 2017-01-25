@@ -5,34 +5,38 @@
 
 async function initTsApp(){
 
+    if (initialAppState.fetchMore) {
 
-    let apiResponse = await axios.get('/api');
+        console.log('loading more items from Vanilla JS app');
 
-    let apartments = apiResponse.data.apartments;
+        let apiResponse = await axios.get('/api');
 
-    var output = '';
+        let apartments = apiResponse.data.apartments;
 
-    for(let j in apartments){
+        var output = '';
 
-        let apartment = apartments[j];
+        for (let j in apartments) {
 
-        output += `
-                    <tr>
-                        <td>
-                            ${ apartment.streetaddress }<br />
-                            ${ apartment.city }<br />
-                            ${ apartment.zipcode }
-                        </td>
-                        <td>${ apartment.country }</td>
-                        <td>${ apartment.buildyear }</td>
-                    </tr>
-                    `;
+            let apartment = apartments[j];
+
+            output += `
+                        <tr>
+                            <td>
+                                ${ apartment.streetaddress }<br />
+                                ${ apartment.city }<br />
+                                ${ apartment.zipcode }
+                            </td>
+                            <td>${ apartment.country }</td>
+                            <td>${ apartment.buildyear }</td>
+                        </tr>
+                        `;
+
+        }
+
+        let newRows = document.createElement('tbody');
+        newRows.innerHTML = output;
+
+        document.querySelector('#ts-app').appendChild(newRows);
 
     }
-
-    let newRows = document.createElement('tbody');
-    newRows.innerHTML = output;
-
-    document.querySelector('#ts-app').appendChild(newRows);
-
 }

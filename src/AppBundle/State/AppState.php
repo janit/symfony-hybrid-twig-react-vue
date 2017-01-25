@@ -7,6 +7,7 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class AppState implements \JsonSerializable {
 
+    public $fetchMore = false;
     public $sortBy = false;
     public $selectedCountry = false;
     public $apartments = [];
@@ -67,6 +68,22 @@ class AppState implements \JsonSerializable {
     public function setSelectedCountry($selectedCountry)
     {
         $this->selectedCountry = $selectedCountry;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFetchMore()
+    {
+        return $this->fetchMore;
+    }
+
+    /**
+     * @param bool $fetchMore
+     */
+    public function setFetchMore($fetchMore)
+    {
+        $this->fetchMore = $fetchMore;
     }
 
 
