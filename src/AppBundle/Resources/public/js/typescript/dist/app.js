@@ -15,7 +15,6 @@ function initTsApp() {
             let apartment = apartments[j];
             output += `
                     <tr>
-                        <td>${apartment.id}</td>
                         <td>
                             ${apartment.streetaddress}<br />
                             ${apartment.city}<br />

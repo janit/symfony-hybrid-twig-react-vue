@@ -3,6 +3,24 @@ import {render} from 'react-dom'
 
 class Apartments extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            apartments: [],
+
+        };
+    }
+
+    componentDidMount() {
+        axios.get('/api')
+            .then(res => {
+                var apartments = res.data.apartments;
+
+                this.setState({ apartments });
+            });
+    }
+
     renderRows(apartment) {
 
         return  <tr key={ apartment.id }>

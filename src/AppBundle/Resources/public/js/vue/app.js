@@ -29,12 +29,10 @@ var ApartmentListing = Vue.extend({
 
         axios.get('/api')
             .then(function (response) {
-                that.apartments.push(response.data.apartments);
 
-                for(i in response.data.apartments){
+                for(var i in response.data.apartments){
                     that.apartments.push(response.data.apartments[i]);
                 }
-
 
             })
             .catch(function (error) {

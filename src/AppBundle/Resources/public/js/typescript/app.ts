@@ -18,7 +18,6 @@ async function initTsApp(){
 
         output += `
                     <tr>
-                        <td>${ apartment.id }</td>
                         <td>
                             ${ apartment.streetaddress }<br />
                             ${ apartment.city }<br />

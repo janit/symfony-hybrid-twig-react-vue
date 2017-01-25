@@ -26,6 +26,26 @@ class ApartmentRepository extends \Doctrine\ORM\EntityRepository
         }
     }
 
+    public function getRandom($limit)
+    {
+        $query = $this->getEntityManager()
+            ->createQuery(
+                'SELECT a
+                 FROM AppBundle:Apartment a'
+            );
+
+        try {
+
+            // dirty, but I don't give a fuck #thuglife
+            $results = $query->getResult();
+            shuffle($results);
+            return array_slice($results,0,$limit);
+
+        } catch (\Doctrine\ORM\NoResultException $e) {
+            return null;
+        }
+    }
+
     public function finByCountry($country)
     {
         $query = $this->getEntityManager()

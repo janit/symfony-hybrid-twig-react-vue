@@ -20,11 +20,13 @@ class DefaultController extends Controller
         $appState = new AppState();
 
         $em = $this->get('doctrine.orm.default_entity_manager');
-        $apartments = $em->getRepository('AppBundle:Apartment')->findAll();
+        $apartments = $em->getRepository('AppBundle:Apartment')->getRandom(10);
 
         $appState->setApartments($apartments);
 
         $response = new JsonResponse();
+
+        sleep(mt_rand(0,2));
 
         $response->setContent($appState->jsonSerialize());
 
