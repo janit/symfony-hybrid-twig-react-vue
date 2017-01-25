@@ -6,7 +6,6 @@ class Apartments extends Component {
     renderRows(apartment) {
 
         return  <tr key={ apartment.id }>
-                    <td>{ apartment.id }</td>
                     <td>
                         { apartment.streetaddress }<br />
                         { apartment.city }<br />

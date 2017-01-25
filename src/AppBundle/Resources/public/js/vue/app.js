@@ -1,11 +1,10 @@
 // create constructor
-var Profile = Vue.extend({
+var ApartmentListing = Vue.extend({
     template: `
         <div>
             <h2>Hello from Vue</h2>
             <table>
             <tr v-for="apartment in apartments">
-                <td>{{ apartment.id }}</td>
                 <td>
                     {{ apartment.streetaddress }}<br />
                     {{ apartment.city }}<br />
@@ -22,7 +21,28 @@ var Profile = Vue.extend({
         let vueAppState = initialAppState;
 
         return vueAppState;
+    },
+
+    created: function () {
+
+        var that = this;
+
+        axios.get('/api')
+            .then(function (response) {
+                that.apartments.push(response.data.apartments);
+
+                for(i in response.data.apartments){
+                    that.apartments.push(response.data.apartments[i]);
+                }
+
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
     }
 });
-// create an instance of Profile and mount it on an element
-new Profile().$mount('#vue-app');
+// create an instance of ApartmentListing and mount it on an element
+new ApartmentListing().$mount('#vue-app');
