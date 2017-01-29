@@ -51,7 +51,7 @@ There are three separate client implementations included, React, Vue.js and Vani
 
 ### Vue.js
 
-No build process, just start editing `src/AppBundle/Resources/public/js/vue/app.js`
+No Vue there is build process, just start editing `src/AppBundle/Resources/public/js/vue/app.js`. Note that example uses some the ES6+ syntax is not supported natively everywhere, so you'll need an up-to-date browser.
 
 ### React
 
