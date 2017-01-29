@@ -47,8 +47,45 @@ Open app in browser: http://localhost:8000
 
 ## JavaScript builds
 
+There are three separate client implementations included, React, Vue.js and Vanilla JavaScript (via TypeScript). If you want to try modifications to the behaviour of the clients you'll need to do some build setup:
 
+### Vue.js
 
+No build process, just start editing `src/AppBundle/Resources/public/js/vue/app.js`
+
+### React
+
+The React app is built using <a href="https://github.com/insin/nwb">nwb</a>, a fast way to get started with contemporary (as of February 2017) JavaScript builds.
+
+Install nwb globally:
+
+```
+npm install -g nwb
+```
+
+Enter directory and run build:
+
+```
+cd src/AppBundle/Resources/public/js/react
+react build app.js
+```
+
+The built filename changes by default, so unless you tweak config, you'll need to edit `app/Resources/views/base.html.twig` to the current one.
+
+### JavaScript / TypeScript
+
+The vanilla JavaScript app is written in <a href="http://typescriptlang.org">TypeScript</a>, which adds type information and some other syntax on top of the JavaScript language.
+
+The easiest way to work with TypeScript is use an editor which supports the language (such as PhpStorm, Visual Studio Code, etc...) out of the box, but otherwise you can also install the TypeScript compiler and do compilation manually:
+
+```
+npm i -g typescript
+src/AppBundle/Resources/public/js/typescript/
+tsc app.ts
+```
+
+The vanilla JavaScript app is written in <a href="http://typescriptlang.org">TypeScript</a>, which adds type information and some other syntax on top of the JavaScript language.
+The vanilla JavaScript app is written in <a href="http://typescriptlang.org">TypeScript</a>, which adds type information and some other syntax on top of the JavaScript language.
 ## Background information to follow
 
 As a bonus I will be adding example TypeScript Type Definitions
