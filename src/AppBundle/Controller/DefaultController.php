@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 class DefaultController extends Controller
 {
@@ -81,14 +82,22 @@ class DefaultController extends Controller
 
         $appState = new AppState();
 
-        $em = $this->get('doctrine.orm.default_entity_manager');
-        $apartments = $em->getRepository('AppBundle:Apartment')->getRandom(10);
+        $cache = new FilesystemCache();
+        $cacheKey = 'apartments';
+
+        if (!$cache->has($cacheKey)) {
+
+            $em = $this->get('doctrine.orm.default_entity_manager');
+            $apartments = $em->getRepository('App:Apartment')->findByLimit(10);
+
+            $cache->set($cacheKey, $apartments, 3600);
+        }
+
+        $apartments = $cache->get($cacheKey);
 
         $appState->setApartments($apartments);
 
         $response = new JsonResponse();
-
-        sleep(mt_rand(0,2));
 
         $response->setContent($appState->jsonSerialize());
 
